@@ -7,22 +7,22 @@ app.get('/', function(req, res){
 });
 
 io.on('connection',function(socket){
+	
     console.log('one user connected '+socket.id);
-	socket.emit('news', { hello: 'world' });
-	 
+    
     socket.on('message',function(data){
-		
-		console.log("data = "+JSON.stringify(data));
-		var sockets = io.sockets.sockets;
-        sockets.forEach(function(sock){
-            if(sock.id === socket.id)
-            {	
+    	
+	console.log("data = "+JSON.stringify(data));
+	var sockets = io.sockets.sockets;
+        sockets.forEach(function(sock) {
+        	
+            if(sock.id === socket.id) {	 //reply back to the same user who send a message 
                 sock.emit('message',data);
-				console.log("sending data back to same client");
+		console.log("sending data back to same client");
             }
+            
         });
-		
-		
+        
     })
     socket.on('disconnect',function(){
         console.log('one user disconnected '+socket.id);
