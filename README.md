@@ -6,3 +6,8 @@ A basic node.js app showcasing how socket connection can be build and how server
 
 ` How a client request can be tracked based on the unique client-id given by socket to each connected client.`
 
+### Steps to run :
+
+`npm install`
+
+`node index.js`
